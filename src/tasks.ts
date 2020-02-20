@@ -16,15 +16,6 @@ export enum TaskType {
     PRODUCT_READINESS,
 }
 
-export interface Task {
-    id: number;
-    title: string;
-    type: TaskType;
-    text?: string;
-    question: string;
-    options: Option[]
-}
-
 export enum ResultSum {
     NEGATIVE,
     POSITIVE,
@@ -35,6 +26,22 @@ export interface DecisionResult extends Consequence {
     sum: ResultSum;
 }
 
+export interface RootTask {
+    id: number;
+    title: string;
+    type: TaskType;
+    text: string;
+    question: string;
+    options: Option[]
+}
+export interface NodeTask {
+    id: number;
+    title: string;
+    type: TaskType;
+    question: string;
+    options: Option[]
+}
+
 export interface LeafTask {
     id: number;
     title: string;
@@ -42,7 +49,10 @@ export interface LeafTask {
     result: DecisionResult;
 }
 
-export const tasks: Array<Task | LeafTask> = [
+export type Task = RootTask | NodeTask | LeafTask;
+
+
+export const tasks: Task[] = [
     { 
         id: 1127, 
         title: 'Interview Potential Customers', 
