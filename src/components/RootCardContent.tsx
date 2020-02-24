@@ -17,7 +17,7 @@ import {
 import { grey } from "@material-ui/core/colors";
 import { makeStyles, Theme, useTheme } from "@material-ui/core/styles";
 
-import { RootTask } from "../tasks";
+import { Option, RootTask } from "../tasks";
 import NodeCardContent from "./NodeCardContent";
 
 const useStyles = makeStyles({
@@ -34,7 +34,7 @@ const useStyles = makeStyles({
 
 interface RootCardContentProps {
   task: RootTask;
-  onTaskChange: (next?: number) => void;
+  onTaskChange: (option?: Option) => void;
 }
 
 export const RootCardContent: React.FC<RootCardContentProps> = ({

@@ -4,6 +4,8 @@ export interface Consequence {
   money?: number;
 }
 
+export type Stats = Required<Consequence>;
+
 export interface Option {
   decision: string;
   next?: number;
@@ -61,23 +63,23 @@ export const tasks: Task[] = [
       {
         decision: "Their kids current usage of technology",
         next: 1128,
-        consequence: { time: -2 }
+        consequence: { time: 2 }
       },
       {
         decision: "Their needs/challenges when raising their kids",
         next: 1129,
-        consequence: { time: -2 }
+        consequence: { time: 2 }
       },
       {
         decision: "Their suggestions for product features for the smartwatch",
         next: 11210,
-        consequence: { time: -2 }
+        consequence: { time: 2 }
       },
       {
         decision:
           "Why talk to the parents? The users are more important. Interview 5 kids",
         next: 11211,
-        consequence: { time: -2 }
+        consequence: { time: 2 }
       }
     ]
   },
@@ -167,22 +169,22 @@ export const tasks: Task[] = [
       {
         decision: "We will do it all ourselve",
         next: 11319,
-        consequence: { time: -10 }
+        consequence: { time: 10 }
       },
       {
         decision: "The webpage/webshop",
         next: 11318,
-        consequence: { time: -4, money: -15000 }
+        consequence: { time: 4, money: -15000 }
       },
       {
         decision: "The online advertisement campaign",
         next: 11319,
-        consequence: { time: -6, money: -5000 }
+        consequence: { time: 6, money: -5000 }
       },
       {
         decision: "We will pay for both",
         next: 11318,
-        consequence: { time: -1, money: -18000 }
+        consequence: { time: 1, money: -18000 }
       }
     ]
   },
@@ -196,17 +198,17 @@ export const tasks: Task[] = [
       {
         decision: "Communicating with the kids",
         next: 11321,
-        consequence: { time: -8 }
+        consequence: { time: 8 }
       },
       {
         decision: "The possiblity to play games and watch videos",
         next: 11321,
-        consequence: { time: -8 }
+        consequence: { time: 8 }
       },
       {
         decision: "Supporting healthy habit formation",
         next: 11322,
-        consequence: { time: -8 }
+        consequence: { time: 8 }
       }
     ]
   },
@@ -220,17 +222,17 @@ export const tasks: Task[] = [
       {
         decision: "Communicating with the kids",
         next: 11323,
-        consequence: { time: -6 }
+        consequence: { time: 6 }
       },
       {
         decision: "The possiblity to play games and watch videos",
         next: 11324,
-        consequence: { time: -6 }
+        consequence: { time: 6 }
       },
       {
         decision: "Supporting healthy habit formation",
         next: 11325,
-        consequence: { time: -6 }
+        consequence: { time: 6 }
       }
     ]
   },
@@ -280,7 +282,7 @@ export const tasks: Task[] = [
       {
         decision: "Get a consultant to review result",
         next: 11326,
-        consequence: { time: -1, money: 8000, cd: 2 }
+        consequence: { time: 1, money: 8000, cd: 2 }
       }
     ]
   },
@@ -297,7 +299,7 @@ export const tasks: Task[] = [
       {
         decision: "Get a consultant to review result",
         next: 11327,
-        consequence: { time: -1, money: 8000, cd: 2 }
+        consequence: { time: 1, money: 8000, cd: 2 }
       }
     ]
   },
@@ -314,7 +316,7 @@ export const tasks: Task[] = [
       {
         decision: "Get a consultant to review result",
         next: 11328,
-        consequence: { time: -1, money: 8000, cd: 2 }
+        consequence: { time: 1, money: 8000, cd: 2 }
       }
     ]
   },

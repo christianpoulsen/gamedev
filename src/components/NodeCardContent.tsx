@@ -13,7 +13,7 @@ import {
 import { grey } from "@material-ui/core/colors";
 import { makeStyles, Theme, useTheme } from "@material-ui/core/styles";
 
-import { NodeTask } from "../tasks";
+import { NodeTask, Option } from "../tasks";
 
 const useStyles = makeStyles({
   container: {
@@ -33,7 +33,7 @@ const useStyles = makeStyles({
 
 interface NodeCardContentProps {
   task: NodeTask;
-  onTaskChange: (next?: number) => void;
+  onTaskChange: (option?: Option) => void;
 }
 
 export const NodeCardContent: React.FC<NodeCardContentProps> = ({
@@ -43,8 +43,8 @@ export const NodeCardContent: React.FC<NodeCardContentProps> = ({
   const theme = useTheme();
   const classes = useStyles(theme);
 
-  const handleClick = (next?: number) => () => {
-    onTaskChange(next);
+  const handleClick = (option?: Option) => () => {
+    onTaskChange(option);
   };
 
   return (
@@ -70,7 +70,7 @@ export const NodeCardContent: React.FC<NodeCardContentProps> = ({
             <ListItem
               button
               alignItems="center"
-              onClick={handleClick(option.next)}
+              onClick={handleClick(option)}
               className={classes.button}
             >
               <ListItemText primary={option.decision} />

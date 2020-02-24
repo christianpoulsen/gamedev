@@ -5,10 +5,11 @@ import { grey } from "@material-ui/core/colors";
 import { makeStyles } from "@material-ui/core/styles";
 
 import { isLeaf, isRoot } from "../helpers";
-import { Task } from "../tasks";
+import { Option, Stats, Task } from "../tasks";
 import LeafCardContent from "./LeafCardContent";
 import NodeCardContent from "./NodeCardContent";
 import RootCardContent from "./RootCardContent";
+import StatsHeader from "./StatsHeader";
 
 const useStyles = makeStyles({
   container: {
@@ -23,15 +24,23 @@ const useStyles = makeStyles({
     display: "flex",
     flexDirection: "column",
     alignItems: "center"
+  },
+  cardHeader: {
+    fontSize: 12
   }
 });
 
 interface MainCardProps {
   task?: Task;
-  onTaskChange: (next?: number) => void;
+  onTaskChange: (option?: Option) => void;
+  stats: Stats;
 }
 
-export const MainCard: React.FC<MainCardProps> = ({ task, onTaskChange }) => {
+export const MainCard: React.FC<MainCardProps> = ({
+  task,
+  onTaskChange,
+  stats
+}) => {
   const classes = useStyles();
 
   return (
@@ -42,7 +51,7 @@ export const MainCard: React.FC<MainCardProps> = ({ task, onTaskChange }) => {
       className={classes.container}
     >
       <Card elevation={2} className={classes.card}>
-        <CardHeader />
+        <CardHeader title={<StatsHeader stats={stats} />} />
         <CardContent>{task?.title}</CardContent>
         {getCardContent(task, onTaskChange)}
       </Card>
@@ -50,7 +59,10 @@ export const MainCard: React.FC<MainCardProps> = ({ task, onTaskChange }) => {
   );
 };
 
-const getCardContent = (task: Task, onTaskChange: (next?: number) => void) => {
+const getCardContent = (
+  task: Task,
+  onTaskChange: (option?: Option) => void
+) => {
   if (isRoot(task)) {
     return <RootCardContent task={task} onTaskChange={onTaskChange} />;
   } else if (isLeaf(task)) {

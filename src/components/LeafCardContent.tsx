@@ -4,7 +4,7 @@ import { Card, Grid, Paper } from "@material-ui/core";
 import { grey } from "@material-ui/core/colors";
 import { makeStyles } from "@material-ui/core/styles";
 
-import { LeafTask } from "../tasks";
+import { LeafTask, Option } from "../tasks";
 
 const useStyles = makeStyles({
   card: {
@@ -16,7 +16,7 @@ const useStyles = makeStyles({
 
 interface LeafCardContentProps {
   task: LeafTask;
-  onTaskChange: (next?: number) => void;
+  onTaskChange: (option?: Option) => void;
 }
 
 export const LeafCardContent: React.FC<LeafCardContentProps> = ({ task }) => {
