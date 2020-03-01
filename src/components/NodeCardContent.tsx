@@ -49,8 +49,8 @@ export const NodeCardContent: React.FC<NodeCardContentProps> = ({ task, onTaskCh
 			<Grid item>
 				<List>
 					{task.options.map(option => (
-						<ListItem button alignItems="center" onClick={handleClick(option)} className={classes.button}>
-							<ListItemText primary={option.decision} />
+						<ListItem key={option?.decision?.trim()} button alignItems="center" onClick={handleClick(option)} className={classes.button}>
+							<ListItemText primary={option?.decision} />
 						</ListItem>
 					))}
 				</List>

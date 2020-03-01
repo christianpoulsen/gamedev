@@ -39,14 +39,18 @@ interface MainCardProps {
 export const MainCard: React.FC<MainCardProps> = ({ task, onTaskChange, stats }) => {
 	const classes = useStyles();
 
+	console.log(task);
+
+	if (task === undefined) {
+		return <Card />;
+	}
+
 	return (
-		<Grid container alignItems="center" justify="center" className={classes.container}>
-			<Card elevation={2} className={classes.card}>
-				<CardHeader title={<StatsHeader stats={stats} />} />
-				<CardContent>{task?.title}</CardContent>
-				{getCardContent(task, onTaskChange)}
-			</Card>
-		</Grid>
+		<Card elevation={2} className={classes.card}>
+			<CardHeader title={<StatsHeader stats={stats} />} />
+			<CardContent>{task?.title}</CardContent>
+			{getCardContent(task, onTaskChange)}
+		</Card>
 	);
 };
 
