@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { Grid, List, ListItem, ListItemText } from '@material-ui/core';
 import { makeStyles, Theme, useTheme } from '@material-ui/core/styles';
-import { Task } from '../tasks';
+import { Task } from '../data';
 
 const useStyles = makeStyles({
 	container: {

@@ -1,5 +1,6 @@
 export interface Consequence {
 	time?: number;
+	pr?: number;
 	cd?: number;
 	money?: number;
 }

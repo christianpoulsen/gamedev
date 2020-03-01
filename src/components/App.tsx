@@ -1,39 +1,36 @@
 import React, { useState } from 'react';
 
-import DecisionList from './DecisionList';
-import MainCard from './MainCard';
-import TaskBoard from './TaskBoard';
+import { Dialog, Divider } from '@material-ui/core';
 
-import { Dialog, Grid, Typography } from '@material-ui/core';
-import { Option, Stats, Task, tasks } from '../tasks';
+import { Option, Stats, Task, tasks } from '../data';
+import InstrumentBoard from './InstrumentBoard';
+import TaskBoard from './TaskBoard';
+import MainCard from './TaskCard';
 
 const App: React.FC = () => {
 	const [log, setLog] = useState([] as Task[]);
-	const [stats, setStats] = useState({ money: 250, cd: 0, time: 1 } as Stats);
+	const [stats, setStats] = useState({ money: 1000000, cd: 0, time: 1 } as Stats);
 	const [activeTask, setActiveTask] = useState<Task>(undefined);
 
 	const handleClose = () => setActiveTask(undefined);
 	const handleTaskChange = (option?: Option) => {
 		setLog([activeTask, ...log]);
-		console.log('option', option);
-		console.log('active task', activeTask);
 		if (option) {
 			const newTask = tasks.find(t => t.id === option?.next);
-			console.log('new task', newTask);
 			if (newTask) {
 				setActiveTask(newTask);
 			} else {
 				setActiveTask(undefined);
 			}
+		} else {
+			setActiveTask(undefined);
 		}
-		console.log('newly set task', activeTask);
-		console.log('consequence', option?.consequence);
-		const { money = 0, cd = 0, time = 0 } = option?.consequence ?? {};
-		console.log({ money, cd, time });
+		const { money = 0, cd = 0, time = 0, pr = 0 } = option?.consequence ?? {};
 		const newStats = {
 			money: stats.money + money,
 			cd: stats.cd + cd,
 			time: stats.time + time,
+			pr: stats.pr + pr,
 		};
 		setStats(newStats);
 	};
@@ -41,10 +38,12 @@ const App: React.FC = () => {
 	return (
 		<>
 			{/* <DecisionList log={log} /> */}
-			<TaskBoard onSelectTask={setActiveTask} />
+			<InstrumentBoard stats={stats} />
+			<Divider />
+			<TaskBoard onSelectTask={setActiveTask} log={log.map(task => task.id)} />
 
 			<Dialog open={!!activeTask} onClose={handleClose}>
-				<MainCard task={activeTask} onTaskChange={handleTaskChange} stats={stats} />
+				<MainCard task={activeTask} onTaskChange={handleTaskChange} />
 			</Dialog>
 		</>
 	);

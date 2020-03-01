@@ -3,9 +3,9 @@ import React, { useState } from 'react';
 import { Card, Dialog, Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { Option, RootTask, Stats, Task, tasks, TaskType } from '../tasks';
+import { Option, RootTask, Stats, Task, tasks, TaskType } from '../data';
 import BoardCard from './BoardCard';
-import MainCard from './MainCard';
+import MainCard from './TaskCard';
 
 const useStyles = makeStyles({
 	root: {
@@ -27,16 +27,17 @@ const useStyles = makeStyles({
 });
 
 interface TaskBoardProps {
+	log: number[];
 	onSelectTask: (task: Task) => void;
 }
 
-const TaskBoard: React.FC<TaskBoardProps> = ({ onSelectTask }) => {
+const TaskBoard: React.FC<TaskBoardProps> = ({ onSelectTask, log }) => {
 	const classes = useStyles();
 
-	const rootTasks: RootTask[] = tasks.filter((task: RootTask): task is RootTask => task?.text !== undefined);
+	const rootTasks: RootTask[] = tasks.filter((task: RootTask): task is RootTask => task?.text !== undefined && !log.includes(task.id));
 	const pdTasks: Array<RootTask | undefined> = rootTasks.filter(task => task.type === TaskType.PRODUCT_DEVELOPMENT);
 	pdTasks.push(...Array(Math.max(6 - pdTasks.length, 0)));
-	const cdTasks: Array<RootTask | undefined> = rootTasks.filter(task => task.type === TaskType.CUSTOMER_DEVELOPMENT);
+	const cdTasks: Array<RootTask | undefined> = rootTasks.filter(task => task.type === TaskType.CUSTOMER_DEVELOPMENT && !log.includes(task.id));
 	cdTasks.push(...Array(Math.max(6 - cdTasks.length, 0)));
 
 	return (

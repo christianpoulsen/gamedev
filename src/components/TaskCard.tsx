@@ -1,26 +1,20 @@
 import * as React from 'react';
 
 import { Card, CardContent, CardHeader, Grid } from '@material-ui/core';
-import { grey } from '@material-ui/core/colors';
-import { makeStyles } from '@material-ui/core/styles';
+import { lightBlue, orange } from '@material-ui/core/colors';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 
+import { Option, Stats, Task, TaskType } from '../data';
 import { isLeaf, isRoot } from '../helpers';
-import { Option, Stats, Task } from '../tasks';
 import LeafCardContent from './LeafCardContent';
 import NodeCardContent from './NodeCardContent';
 import RootCardContent from './RootCardContent';
-import StatsHeader from './StatsHeader';
 
-const useStyles = makeStyles({
-	container: {
-		position: 'absolute',
-		height: '100vh',
-		width: '100vw',
-	},
+const useStyles = makeStyles<Theme, TaskType>({
 	card: {
 		height: 576,
 		width: 512,
-		backgroundColor: grey[500],
+		backgroundColor: type => (type === TaskType.PRODUCT_DEVELOPMENT ? orange[200] : lightBlue[200]),
 		display: 'flex',
 		flexDirection: 'column',
 		alignItems: 'center',
@@ -30,16 +24,13 @@ const useStyles = makeStyles({
 	},
 });
 
-interface MainCardProps {
+interface TaskCardProps {
 	task?: Task;
 	onTaskChange: (option?: Option) => void;
-	stats: Stats;
 }
 
-export const MainCard: React.FC<MainCardProps> = ({ task, onTaskChange, stats }) => {
-	const classes = useStyles();
-
-	console.log(task);
+export const TaskCard: React.FC<TaskCardProps> = ({ task, onTaskChange }) => {
+	const classes = useStyles(task?.type);
 
 	if (task === undefined) {
 		return <Card />;
@@ -47,7 +38,6 @@ export const MainCard: React.FC<MainCardProps> = ({ task, onTaskChange, stats })
 
 	return (
 		<Card elevation={2} className={classes.card}>
-			<CardHeader title={<StatsHeader stats={stats} />} />
 			<CardContent>{task?.title}</CardContent>
 			{getCardContent(task, onTaskChange)}
 		</Card>
@@ -66,4 +56,4 @@ const getCardContent = (task: Task, onTaskChange: (option?: Option) => void) => 
 	}
 };
 
-export default MainCard;
+export default TaskCard;

@@ -4,7 +4,7 @@ import { Button, ButtonProps, Card, CardActions, CardContent, Grid, List, ListIt
 import { grey } from '@material-ui/core/colors';
 import { makeStyles, Theme, useTheme } from '@material-ui/core/styles';
 
-import { Option, RootTask } from '../tasks';
+import { Option, RootTask } from '../data';
 import NodeCardContent from './NodeCardContent';
 
 const useStyles = makeStyles({
