@@ -5,19 +5,10 @@ import { grey } from '@material-ui/core/colors';
 import { makeStyles, Theme, useTheme } from '@material-ui/core/styles';
 
 import { Option, RootTask } from '../data';
+import CardBody from './CardBody';
 import NodeCardContent from './NodeCardContent';
 
-const useStyles = makeStyles({
-	container: {
-		height: '100%',
-		width: 384,
-	},
-	button: {
-		textAlign: 'center',
-		marginBottom: (theme: Theme) => theme.spacing(3),
-		backgroundColor: (theme: Theme) => theme.palette.background.paper,
-	},
-});
+const useStyles = makeStyles(theme => ({}));
 
 interface RootCardContentProps {
 	task: RootTask;
@@ -25,8 +16,7 @@ interface RootCardContentProps {
 }
 
 export const RootCardContent: React.FC<RootCardContentProps> = ({ task, onTaskChange }) => {
-	const theme = useTheme();
-	const classes = useStyles(theme);
+	const classes = useStyles();
 	const [flipped, setFlipped] = useState(false);
 
 	const handleClick = () => {
@@ -38,24 +28,14 @@ export const RootCardContent: React.FC<RootCardContentProps> = ({ task, onTaskCh
 	}
 
 	return (
-		<Grid container direction="column" alignItems="stretch" justify="space-between" className={classes.container}>
-			<Grid item>
-				<Card>
-					<CardContent>
-						<Typography variant="body1" component="p">
-							{task.text}
-						</Typography>
-					</CardContent>
-				</Card>
-			</Grid>
-			<Grid item>
-				<List>
-					<ListItem button alignItems="center" onClick={handleClick} className={classes.button}>
-						<ListItemText primary="Nice" />
-					</ListItem>
-				</List>
-			</Grid>
-		</Grid>
+		<CardBody>
+			<Typography variant="body1" component="p">
+				{task.text}
+			</Typography>
+			<ListItem button alignItems="center" onClick={handleClick}>
+				<ListItemText primary="Nice" />
+			</ListItem>
+		</CardBody>
 	);
 };
 

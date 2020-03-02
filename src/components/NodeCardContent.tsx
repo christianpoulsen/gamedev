@@ -5,6 +5,7 @@ import { grey } from '@material-ui/core/colors';
 import { makeStyles, Theme, useTheme } from '@material-ui/core/styles';
 
 import { NodeTask, Option } from '../data';
+import CardBody from './CardBody';
 
 const useStyles = makeStyles({
 	container: {
@@ -17,7 +18,7 @@ const useStyles = makeStyles({
 		backgroundColor: 'yellow',
 	},
 	button: {
-		marginBottom: (theme: Theme) => theme.spacing(3),
+		marginBottom: (theme: Theme) => theme.spacing(1),
 		backgroundColor: (theme: Theme) => theme.palette.background.paper,
 	},
 });
@@ -36,26 +37,16 @@ export const NodeCardContent: React.FC<NodeCardContentProps> = ({ task, onTaskCh
 	};
 
 	return (
-		<Grid container direction="column" alignItems="stretch" justify="space-between" className={classes.container}>
-			<Grid item>
-				<Card>
-					<CardContent>
-						<Typography variant="body1" component="p">
-							{task.question}
-						</Typography>
-					</CardContent>
-				</Card>
-			</Grid>
-			<Grid item>
-				<List>
-					{task.options.map(option => (
-						<ListItem key={option?.decision?.trim()} button alignItems="center" onClick={handleClick(option)} className={classes.button}>
-							<ListItemText primary={option?.decision} />
-						</ListItem>
-					))}
-				</List>
-			</Grid>
-		</Grid>
+		<CardBody>
+			<Typography variant="body1" component="p">
+				{task.question}
+			</Typography>
+			{task.options.map(option => (
+				<ListItem key={option?.decision?.trim()} button alignItems="center" onClick={handleClick(option)} className={classes.button}>
+					<ListItemText primary={option?.decision} />
+				</ListItem>
+			))}
+		</CardBody>
 	);
 };
 
