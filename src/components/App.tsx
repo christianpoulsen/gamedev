@@ -40,7 +40,7 @@ const App: React.FC = () => {
 		<>
 			{/* <DecisionList log={log} /> */}
 			<TheStartupGame />
-			<InstrumentBoard stats={stats} />
+			<InstrumentBoard stats={stats} onChange={setStats} />
 			<Divider />
 			<TaskBoard onSelectTask={setActiveTask} log={log.map(task => task.id)} />
 			<Dialog open={!!activeTask} onClose={handleClose}>
