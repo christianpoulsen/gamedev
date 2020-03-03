@@ -13,6 +13,12 @@ const useStyles = makeStyles(theme => ({
 		'& > div': {
 			marginBottom: theme.spacing(1),
 			backgroundColor: theme.palette.background.paper,
+			'& img': {
+				width: 12,
+				height: 12,
+				marginLeft: 8,
+				marginRight: 4,
+			},
 		},
 	},
 }));

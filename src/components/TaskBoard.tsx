@@ -36,9 +36,9 @@ const TaskBoard: React.FC<TaskBoardProps> = ({ onSelectTask, log }) => {
 
 	const rootTasks: RootTask[] = tasks.filter((task: RootTask): task is RootTask => task?.text !== undefined && !log.includes(task.id));
 	const pdTasks: Array<RootTask | undefined> = rootTasks.filter(task => task.type === TaskType.PRODUCT_DEVELOPMENT);
-	pdTasks.push(...Array(Math.max(6 - pdTasks.length, 0)));
+	pdTasks.push(...Array(Math.max(4 - pdTasks.length, 0)));
 	const cdTasks: Array<RootTask | undefined> = rootTasks.filter(task => task.type === TaskType.CUSTOMER_DEVELOPMENT && !log.includes(task.id));
-	cdTasks.push(...Array(Math.max(6 - cdTasks.length, 0)));
+	cdTasks.push(...Array(Math.max(4 - cdTasks.length, 0)));
 
 	return (
 		<>

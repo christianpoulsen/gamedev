@@ -4,7 +4,9 @@ import { Card, CardContent, Grid, List, ListItem, ListItemText, Paper, Typograph
 import { grey } from '@material-ui/core/colors';
 import { makeStyles, Theme, useTheme } from '@material-ui/core/styles';
 
-import { NodeTask, Option } from '../data';
+import clock from '../assets/clock.png';
+import moneyBag from '../assets/money.png';
+import { Consequence, NodeTask, Option } from '../data';
 import CardBody from './CardBody';
 
 const useStyles = makeStyles({
@@ -17,10 +19,6 @@ const useStyles = makeStyles({
 		width: 200,
 		backgroundColor: 'yellow',
 	},
-	button: {
-		marginBottom: (theme: Theme) => theme.spacing(1),
-		backgroundColor: (theme: Theme) => theme.palette.background.paper,
-	},
 });
 
 interface NodeCardContentProps {
@@ -29,8 +27,7 @@ interface NodeCardContentProps {
 }
 
 export const NodeCardContent: React.FC<NodeCardContentProps> = ({ task, onTaskChange }) => {
-	const theme = useTheme();
-	const classes = useStyles(theme);
+	const classes = useStyles();
 
 	const handleClick = (option?: Option) => () => {
 		onTaskChange(option);
@@ -42,11 +39,42 @@ export const NodeCardContent: React.FC<NodeCardContentProps> = ({ task, onTaskCh
 				{task.question}
 			</Typography>
 			{task.options.map(option => (
-				<ListItem key={option?.decision?.trim()} button alignItems="center" onClick={handleClick(option)} className={classes.button}>
-					<ListItemText primary={option?.decision} />
+				<ListItem key={option?.decision?.trim()} button alignItems="center" onClick={handleClick(option)}>
+					<ListItemText
+						primary={option?.decision}
+						secondary={<ViewConsequences consequence={option?.consequence} />}
+						secondaryTypographyProps={{
+							color: 'textPrimary',
+							align: 'right',
+						}}
+					/>
 				</ListItem>
 			))}
 		</CardBody>
+	);
+};
+
+const ViewConsequences = ({ consequence }: { consequence?: Consequence }) => {
+	if (!consequence) {
+		return null;
+	}
+
+	const { time, money } = consequence;
+	return (
+		<span>
+			{time !== undefined && (
+				<>
+					<img src={clock} />
+					{time}
+				</>
+			)}
+			{money !== undefined && (
+				<>
+					<img src={moneyBag} />
+					{money}
+				</>
+			)}
+		</span>
 	);
 };
 
