@@ -19,6 +19,10 @@
     "noEmit": true,
     "jsx": "react",
     "noImplicitAny": false, // fix react sometimes having no types'
+    "baseUrl": "src",
+    "paths": {
+      "@/*": ["components/*", "views/*", "assets/*", "./*"],
+    }
   },
   "include": [
     "src"

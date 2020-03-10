@@ -32,8 +32,17 @@ const InstrumentBoard: React.FC<InstrumentBoardProps> = ({ time, onChange }) => 
 	const [offset, setOffset] = useState(new Date().getSeconds());
 	const [seconds, setSeconds] = useState(0);
 
-	setInterval(() => setSeconds(new Date().getSeconds() - offset), 1000);
-	setInterval(() => onChange(time + 1), 1000 * 60);
+	useEffect(() => {
+		console.log('new interval', time + 1);
+		const interval = setInterval(() => onChange(time + 1), 1000 * 60);
+		setOffset(new Date().getSeconds());
+		return () => clearInterval(interval);
+	}, [time]);
+
+	useEffect(() => {
+		const interval = setInterval(() => setSeconds(new Date().getSeconds() - offset), 1000);
+		return () => clearInterval(interval);
+	}, [offset]);
 
 	return (
 		<div className={classes.parent}>
