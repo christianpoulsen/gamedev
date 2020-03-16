@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 
 import { Button, Container, Divider, Grid, makeStyles, Step, StepLabel, Stepper, Typography } from '@material-ui/core';
 
-import { Option, Stats, Task, tasks } from '@/data';
+import { Option, Stats, Task } from '@/types';
+
 import YOU from '@/man.png';
 import TheStartupGame from '@/TheStartupGame';
 import Welcome from '@/Welcome';
+import GameMechanics from './GameMechanics';
+import PickCofounders from './PickCofounders';
 
 const useStyles = makeStyles(theme => ({
 	content: {
@@ -17,9 +20,19 @@ const useStyles = makeStyles(theme => ({
 	},
 }));
 
-const Introduction: React.FC = () => {
+interface IntroductionProps {
+	onNextStage: () => void;
+}
+
+const Introduction: React.FC<IntroductionProps> = ({ onNextStage }) => {
 	const [activeStep, setActiveStep] = useState(0);
-	const handleNext = () => setActiveStep(prevActiveStep => prevActiveStep + 1);
+	const handleNext = () => {
+		if (activeStep === 4) {
+			onNextStage();
+		} else {
+			setActiveStep(prevActiveStep => prevActiveStep + 1);
+		}
+	};
 	const handleBack = () => setActiveStep(prevActiveStep => prevActiveStep - 1);
 
 	const classes = useStyles();
@@ -51,13 +64,13 @@ const Introduction: React.FC = () => {
 						{activeStep !== 0 && (
 							<Grid item>
 								<Button variant="contained" color="secondary" onClick={handleBack}>
-									Forrige
+									Back
 								</Button>
 							</Grid>
 						)}
 						<Grid>
 							<Button variant="contained" color="primary" onClick={handleNext}>
-								Næste
+								Next
 							</Button>
 						</Grid>
 					</Grid>
@@ -72,11 +85,11 @@ const getStepContent = (index: number) => {
 		case 0:
 			return <Welcome />;
 		case 1:
-			return <div />;
+			return <GameMechanics />;
 		case 2:
 			return <div />;
 		case 3:
-			return <div />;
+			return <PickCofounders />;
 		case 4:
 			return <div />;
 	}

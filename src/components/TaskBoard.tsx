@@ -3,9 +3,10 @@ import React, { useState } from 'react';
 import { Card, Dialog, Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { Option, RootTask, Stats, Task, tasks, TaskType } from '../data';
-import BoardCard from './BoardCard';
-import MainCard from './TaskCard';
+import BoardCard from '@/BoardCard';
+import tasks from '@/data';
+import MainCard from '@/TaskCard';
+import { Option, RootTask, Stats, Task, TaskType } from '@/types';
 
 const useStyles = makeStyles({
 	root: {

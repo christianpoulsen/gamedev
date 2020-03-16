@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 
 import { Dialog, Divider } from '@material-ui/core';
 
+import tasks from '@/data';
 import InstrumentBoard from '@/InstrumentBoard';
 import TaskBoard from '@/TaskBoard';
 import MainCard from '@/TaskCard';
 import TheStartupGame from '@/TheStartupGame';
-import { Option, Stats, Task, tasks } from '../data';
+import { Option, Stats, Task } from '../types';
 
 interface GameBoardProps {
 	log: Task[];

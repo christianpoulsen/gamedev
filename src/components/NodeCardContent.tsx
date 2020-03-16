@@ -6,7 +6,7 @@ import { makeStyles, Theme, useTheme } from '@material-ui/core/styles';
 
 import clock from '../assets/clock.png';
 import moneyBag from '../assets/money.png';
-import { Consequence, NodeTask, Option } from '../data';
+import { Consequence, NodeTask, Option } from '../types';
 import CardBody from './CardBody';
 
 const useStyles = makeStyles({

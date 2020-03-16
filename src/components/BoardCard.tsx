@@ -6,7 +6,7 @@ import { makeStyles, Theme } from '@material-ui/core/styles';
 
 import * as Businessman from '../assets/businessman.png';
 import * as Engineer from '../assets/engineer.png';
-import { RootTask, TaskType } from '../data';
+import { RootTask, TaskType } from '../types';
 
 const useStyles = makeStyles<Theme, { standard: string; hover: string }>({
 	card: {

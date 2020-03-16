@@ -5,8 +5,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import barometer from '../assets/barometer.png';
 import moneyBag from '../assets/money.png';
-import { Stats } from '../data';
 import { formatMoney } from '../helpers';
+import { Stats } from '../types';
 import Clock from './Clock';
 
 const useStyles = makeStyles(theme => ({

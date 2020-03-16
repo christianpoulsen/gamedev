@@ -4,7 +4,7 @@ import { Card, CardContent, Grid, List, ListItem, ListItemText, Paper, Typograph
 import { grey, lightBlue } from '@material-ui/core/colors';
 import { makeStyles, Theme, useTheme } from '@material-ui/core/styles';
 
-import { LeafTask, Option, ResultSum } from '../data';
+import { LeafTask, Option, ResultSum } from '../types';
 
 const useStyles = makeStyles(theme => ({
 	root: {

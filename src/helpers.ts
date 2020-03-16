@@ -1,4 +1,4 @@
-import { LeafTask, NodeTask, RootTask, Task } from './data';
+import { LeafTask, NodeTask, RootTask, Task } from '@/types';
 
 export const isRoot = (task: Task): task is RootTask => {
 	return (task as RootTask)?.text !== undefined;

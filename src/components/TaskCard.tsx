@@ -4,8 +4,8 @@ import { Card, CardContent, CardHeader, Grid } from '@material-ui/core';
 import { lightBlue, orange } from '@material-ui/core/colors';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 
-import { Option, Stats, Task, TaskType } from '../data';
-import { isLeaf, isRoot } from '../helpers';
+import { isLeaf, isRoot } from '@/helpers';
+import { Option, Stats, Task, TaskType } from '@/types';
 import LeafCardContent from './LeafCardContent';
 import NodeCardContent from './NodeCardContent';
 import RootCardContent from './RootCardContent';
